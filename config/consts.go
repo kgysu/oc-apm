@@ -2,6 +2,7 @@ package config
 
 const HelpText = `
 OC-APM is a helpful tool to manage applications on an Openshift-Cluster.
+!Make sure you are logged in with oc client: oc login
 
 Usage:
   oc-apm (namespace) [command] [arguments]

@@ -36,10 +36,15 @@ const homePage = `
 <br />
 <p>GitHub-Repository: <a class="" href="https://github.com/kgysu/oc-apm" target="_blank">github.com/kgysu/oc-apm</a></p>
 <br />
+<h5>Run APM local</h5>
+<p>If you want to run apm on your local machine then ensure to login with oc client first:</p>
+<kbd>oc login</kbd> <br />
+<kbd>oc project default</kbd> <br />
+<br />
 <br />
 <h4>App Management</h4>
 <br />
-<h6>File structure</h6>
+<h5>File structure</h5>
 <p>Manage your apps locally in a file structure like this:</p>
 <div class="yaml-content">
 <pre><code>
@@ -61,7 +66,7 @@ const homePage = `
 </div>
 <br />
 <br />
-<h6>Yaml files</h6>
+<h5>Yaml files</h5>
 <p>Yaml-Files under <span class="badge badge-secondary">/apps</span> are basically Openshift object(kind) descriptions. 
 The following kinds are supported:</p>
 <ul>
@@ -77,7 +82,7 @@ The following kinds are supported:</p>
 </ul>
 <br />
 <br />
-<h6>Env files</h6>
+<h5>Env files</h5>
 <p>Env-Files are used to set namespace specific values within yaml-files. You can set a variable in a yaml file like 
 this <span class="badge badge-secondary">${name}</span></p>
 <p>For example:</p>

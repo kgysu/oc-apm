@@ -34,9 +34,19 @@ To do so run:
 
 ## Help
 
-Start UI with:
+### Run
+
+Before running APM on local machine ensure to login with openshift client:
+
 ```bash
-$ oc-apm ns=default start
+oc login
+oc project default
+```
+
+To start UI web-server run:
+
+```bash
+oc-apm ns=default start
 ```
 
 Command-Line usage:
