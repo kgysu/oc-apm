@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    app: oc-apm
+  labels:
+    app: oc-apm
+    type: operations
+  name: oc-apm
+  namespace: test-deployer
+spec:
+  ports:
+    - name: basic
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: oc-apm
+  sessionAffinity: None
+  type: ClusterIP

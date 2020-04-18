@@ -1,0 +1,60 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: oc-apm
+    type: operations
+  name: oc-apm
+  namespace: test-deployer
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    app: oc-apm
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: oc-apm
+        type: operations
+      name: oc-apm
+    spec:
+      containers:
+        - env:
+            - name: RUN_IN_CLUSTER
+              value: "true"
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+          image: registry.hub.docker.com/delai21/oc-apm:0.1.0
+          imagePullPolicy: Always
+          name: oc-apm
+          ports:
+            - containerPort: 8080
+              name: basic
+              protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: oc-apm-sa
+      serviceAccountName: oc-apm-sa
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+    - type: ConfigChange

@@ -1,0 +1,16 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  annotations:
+    app: oc-apm
+  labels:
+    app: oc-apm
+  name: oc-apm-rb
+  namespace: test-deployer
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: oc-apm-role
+subjects:
+  - kind: ServiceAccount
+    name: oc-apm-sa

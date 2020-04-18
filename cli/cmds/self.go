@@ -10,10 +10,13 @@ import (
 	v1 "github.com/openshift/api/apps/v1"
 	v13 "github.com/openshift/api/route/v1"
 	v12 "k8s.io/api/core/v1"
+	v14 "k8s.io/api/rbac/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/intstr"
 	"os"
 )
+
+const ImageTag = "registry.hub.docker.com/delai21/oc-apm:0.1.0"
 
 func RunCliCmdInstallSelf() error {
 	restConf, err := client.GetRestConfig(false)
@@ -58,7 +61,7 @@ var apmDeploymentConfig = v1.DeploymentConfig{
 				Containers: []v12.Container{
 					{
 						Name:  "oc-apm",
-						Image: "registry.hub.docker.com/delai21/oc-apm:1.0",
+						Image: ImageTag,
 						Ports: []v12.ContainerPort{
 							{
 								Name:          "basic",
@@ -87,7 +90,7 @@ var apmDeploymentConfig = v1.DeploymentConfig{
 					},
 				},
 				RestartPolicy:      v12.RestartPolicyAlways,
-				ServiceAccountName: "robot",
+				ServiceAccountName: "oc-apm-sa",
 			},
 		},
 	},
@@ -150,11 +153,88 @@ var apmRoute = v13.Route{
 	Status: v13.RouteStatus{},
 }
 
+var apmServiceAccount = v12.ServiceAccount{
+	TypeMeta: metav1.TypeMeta{
+		Kind:       "ServiceAccount",
+		APIVersion: "v1",
+	},
+	ObjectMeta: metav1.ObjectMeta{
+		Name:        "oc-apm-sa",
+		Labels:      map[string]string{"app": "oc-apm"},
+		Annotations: map[string]string{"app": "oc-apm"},
+	},
+}
+
+var apmRole = v14.Role{
+	TypeMeta: metav1.TypeMeta{
+		Kind:       "Role",
+		APIVersion: "rbac.authorization.k8s.io/v1",
+	},
+	ObjectMeta: metav1.ObjectMeta{
+		Name:        "oc-apm-role",
+		Labels:      map[string]string{"app": "oc-apm"},
+		Annotations: map[string]string{"app": "oc-apm"},
+	},
+	Rules: []v14.PolicyRule{
+		{
+			Verbs:     []string{"get", "list", "create", "update", "delete"},
+			APIGroups: []string{""},
+			Resources: []string{"pods", "services", "serviceaccounts", "configmaps", "persistentvolumeclaims"},
+		},
+		{
+			Verbs:     []string{"get", "list", "create", "update", "delete"},
+			APIGroups: []string{"apps"},
+			Resources: []string{"statefulsets"},
+		},
+		{
+			Verbs:     []string{"get", "list", "create", "update", "delete"},
+			APIGroups: []string{"apps.openshift.io"},
+			Resources: []string{"deploymentconfigs"},
+		},
+		{
+			Verbs:     []string{"get", "list", "create", "update", "delete"},
+			APIGroups: []string{"route.openshift.io"},
+			Resources: []string{"routes"},
+		},
+		{
+			Verbs:     []string{"get", "list", "create", "update", "delete"},
+			APIGroups: []string{"rbac.authorization.k8s.io"},
+			Resources: []string{"roles", "rolebindings"},
+		},
+	},
+}
+
+var apmRoleBinding = v14.RoleBinding{
+	TypeMeta: metav1.TypeMeta{
+		Kind:       "RoleBinding",
+		APIVersion: "rbac.authorization.k8s.io/v1",
+	},
+	ObjectMeta: metav1.ObjectMeta{
+		Name:        "oc-apm-rb",
+		Labels:      map[string]string{"app": "oc-apm"},
+		Annotations: map[string]string{"app": "oc-apm"},
+	},
+	Subjects: []v14.Subject{
+		{
+			Kind: "ServiceAccount",
+			Name: "oc-apm-sa",
+		},
+	},
+	RoleRef: v14.RoleRef{
+		Kind:     "Role",
+		Name:     "oc-apm-role",
+		APIGroup: "rbac.authorization.k8s.io",
+	},
+}
+
 func GetApmApp() application.Application {
 	return application.Application{
 		Name:  "oc-apm",
 		Label: "app=oc-apm",
 		Items: []appitem.AppItem{
+			items.NewOpServiceAccount(apmServiceAccount),
+			items.NewOpRole(apmRole),
+			items.NewOpRoleBinding(apmRoleBinding),
 			items.NewOpDeploymentConfig(apmDeploymentConfig),
 			items.NewOpService(apmService),
 			items.NewOpRoute(apmRoute),
