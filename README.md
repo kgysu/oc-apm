@@ -6,10 +6,31 @@ testing new PoC's and also managing large applications with many Openshift items
 
 
 ## Install
-tbd
+
+To download APM executables built for your platform, see releases page: [releases](https://github.com/kgysu/oc-apm/releases)
+
+To build from sources, checkout git repository and build with go:
+
+```bash
+# clone
+git clone https://github.com/kgysu/oc-apm
+
+# build
+cd oc-apm
+go build
+
+# run
+./oc-apm ns=defaul start
 ```
 
+### install on cluster
+You can create a Pod running APM on your cluster directly with 'APM self installation'.
+To do so run:
+
+```bash
+./oc-apm ns=default install
 ```
+ 
 
 ## Help
 
@@ -48,7 +69,7 @@ Global:
 
 
 
-## Types
+## Types / Kinds
 
 The following Openshift-Item-Types are supported:
  - DeploymentConfig
