@@ -105,7 +105,7 @@ const MainContentTemplate = `
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 	<br />
 	<h1>%[1]s</h1>
-	<br />
+	<hr />
 	%[2]s
 </main>
 `

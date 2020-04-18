@@ -7,7 +7,7 @@ func CreateStyles() string {
 const MainStyles = `
 <style>
 	body {
-	  font-size: .875rem;
+	  font-size: 1rem;
 	}
 	
 	.feather {

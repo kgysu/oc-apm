@@ -8,7 +8,7 @@ import (
 )
 
 func CreateItemsListHtml(items []appitem.AppItem, labelSelector string, kinds string) string {
-	return htmlTemplates.CreateHtml("Items", fmt.Sprint(
+	return htmlTemplates.CreateHtml("List", fmt.Sprint(
 		htmlTemplates.CreateBreaks(1),
 		createParamsForm(labelSelector, kinds),
 		htmlTemplates.CreateBreaks(5),

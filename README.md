@@ -13,11 +13,14 @@ tbd
 
 ## Help
 
-Command-Line help:
+Start UI with:
+```bash
+$ oc-apm ns=default start
+```
+
+Command-Line usage:
 
 ```
-OC-APM is a helpful tool to manage applications on an Openshift-Cluster.
-
 Usage:
 	oc-apm (namespace) [command] [arguments]
 
