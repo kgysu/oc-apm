@@ -38,7 +38,7 @@ spec:
                 fieldRef:
                   apiVersion: v1
                   fieldPath: metadata.namespace
-          image: registry.hub.docker.com/delai21/oc-apm:0.1.1
+          image: registry.hub.docker.com/delai21/oc-apm:0.1.2
           imagePullPolicy: Always
           name: oc-apm
           ports:

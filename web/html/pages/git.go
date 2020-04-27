@@ -17,14 +17,21 @@ func CreateGitPageHtml() string {
 
 func createGitForm() string {
 	return htmlTemplates.CreateForm(urls.LoadFromGitUrl, "post", "Load", fmt.Sprint(
-		htmlTemplates.CreateInputFormGroupRow("form-group row", "repoUrl", "Repo-URL",
-			htmlTemplates.CreateInput("text", "form-control", "repoUrl", "")),
-		htmlTemplates.CreateInputFormGroupRow("form-group row", "subPath", "Repo sub directory",
-			htmlTemplates.CreateInput("text", "form-control", "subPath", "")),
-		htmlTemplates.CreateInputFormGroupRow("form-group row", "tag", "Git Tag",
-			htmlTemplates.CreateInput("text", "form-control", "tag", "")),
-		htmlTemplates.CreateInputFormGroupRow("form-group row", "branch", "Git Branch",
-			htmlTemplates.CreateInput("text", "form-control", "branch", "")),
-	))
+		htmlTemplates.CreateInputFormGroupRow("form-group row", "repoUrl", "Repo-URL", fmt.Sprint(
+			htmlTemplates.CreateInput("text", "form-control", "repoUrl", ""),
+			htmlTemplates.CreateInputDescription("repoUrl", "URL to repository, example: https://github.com/user/repo"),
+		)),
+		htmlTemplates.CreateInputFormGroupRow("form-group row", "subPath", "Repo sub directory", fmt.Sprint(
+			htmlTemplates.CreateInput("text", "form-control", "subPath", ""),
+			htmlTemplates.CreateInputDescription("subPath", "Sub directory to clone from repository. Or none to clone all. (slash is required) Example: /apps"),
+		)),
+		htmlTemplates.CreateInputFormGroupRow("form-group row", "tag", "Git Tag", fmt.Sprint(
+			htmlTemplates.CreateInput("text", "form-control", "tag", ""),
+			htmlTemplates.CreateInputDescription("tag", "Git Repository Tag to clone. Example: v1.0.0"),
+		)),
+		htmlTemplates.CreateInputFormGroupRow("form-group row", "branch", "Git Branch", fmt.Sprint(
+			htmlTemplates.CreateInput("text", "form-control", "branch", ""),
+			htmlTemplates.CreateInputDescription("branch", "Git Repository Branch to clone. ONLY IF TAG IS EMPTY! Example: feature/one"),
+		))))
 
 }

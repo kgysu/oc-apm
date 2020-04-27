@@ -15,10 +15,14 @@ func CreateAppNewHtml() string {
 
 func CreateNewAppConfigForm() string {
 	return htmlTemplates.CreateForm(urls.CmdAppNewUrl, "post", "Create", fmt.Sprint(
-		htmlTemplates.CreateInputFormGroupRow("form-group row", "name", "Name",
-			htmlTemplates.CreateInput("text", "form-control", "name", "")),
-		htmlTemplates.CreateInputFormGroupRow("form-group row", "label", "Label-Selector",
-			htmlTemplates.CreateInput("text", "form-control", "label", "app=")),
+		htmlTemplates.CreateInputFormGroupRow("form-group row", "name", "Name", fmt.Sprint(
+			htmlTemplates.CreateInput("text", "form-control", "name", ""),
+			htmlTemplates.CreateInputDescription("label", "App name. Apps with the same name are overwritten if they already exist!"),
+		)),
+		htmlTemplates.CreateInputFormGroupRow("form-group row", "label", "Label-Selector", fmt.Sprint(
+			htmlTemplates.CreateInput("text", "form-control", "label", "app="),
+			htmlTemplates.CreateInputDescription("label", "Label Selector or empty for all."),
+		)),
 		htmlTemplates.CreateInputFormGroupRow("form-group row", "from", "From Existing",
 			htmlTemplates.CreateCheckBox("from", "Create from existing openshift app")),
 	))

@@ -19,11 +19,15 @@ func CreateItemsListHtml(items []appitem.AppItem, labelSelector string, kinds st
 
 func createParamsForm(labelSelector string, kinds string) string {
 	return htmlTemplates.CreateForm(urls.OcCmdList, "get", "List", fmt.Sprint(
-		htmlTemplates.CreateInputFormGroupRow("form-group row", "label", "Label Selector",
-			htmlTemplates.CreateInput("text", "form-control", "label", labelSelector)),
-		htmlTemplates.CreateInputFormGroupRow("form-group row", "Kind-List", "Kind",
-			htmlTemplates.CreateInput("text", "form-control", "kinds", kinds))),
-	)
+		htmlTemplates.CreateInputFormGroupRow("form-group row", "label", "Label Selector", fmt.Sprint(
+			htmlTemplates.CreateInput("text", "form-control", "label", labelSelector),
+			htmlTemplates.CreateInputDescription("label", "Label Selector or empty for all."),
+		)),
+		htmlTemplates.CreateInputFormGroupRow("form-group row", "Kind-List", "Kind", fmt.Sprint(
+			htmlTemplates.CreateInput("text", "form-control", "kinds", kinds),
+			htmlTemplates.CreateInputDescription("label", "Filter by kind or empty for all. "+
+				"Multiple values allowed with any char as separator. Example: Pod, DeploymentConfig, Service, Route"),
+		))))
 }
 
 func CreateItemsAccordion(items []appitem.AppItem) string {

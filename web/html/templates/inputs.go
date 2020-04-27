@@ -17,6 +17,12 @@ func CreateInput(inputType string, class string, id string, value string) string
 
 const InputTemplate = `<input type="%[1]s" class="%[2]s" id="%[3]s" name="%[3]s" value="%[4]s">`
 
+func CreateInputDescription(id string, value string) string {
+	return fmt.Sprintf(InputDescriptionTemplate, id, value)
+}
+
+const InputDescriptionTemplate = `<small id="%[1]s" class="form-text text-muted">%[2]s</small>`
+
 func CreateCheckBox(id, label string) string {
 	return fmt.Sprintf(CheckBoxTemplate, id, label)
 }
