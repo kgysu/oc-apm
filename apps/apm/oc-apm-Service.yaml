@@ -7,7 +7,6 @@ metadata:
     app: oc-apm
     type: operations
   name: oc-apm
-  namespace: test-deployer
 spec:
   ports:
     - name: basic

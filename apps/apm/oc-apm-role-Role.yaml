@@ -6,7 +6,6 @@ metadata:
   labels:
     app: oc-apm
   name: oc-apm-role
-  namespace: test-deployer
 rules:
   - apiGroups:
       - ""

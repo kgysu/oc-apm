@@ -113,6 +113,10 @@ github.com/kgysu/oc-wrapper v0.1.3-0.20200428081733-b11c13802e69 h1:Sa9zwLNfGlrN
 github.com/kgysu/oc-wrapper v0.1.3-0.20200428081733-b11c13802e69/go.mod h1:11STXKbvWzRGSNgajIsNydjvqu1vfeLDAQJbnPKphls=
 github.com/kgysu/oc-wrapper v0.1.3 h1:Gc3qr9S5/EtYEPalaX2D9QGQ3Yhm8/TiJx2hEEFhyv8=
 github.com/kgysu/oc-wrapper v0.1.3/go.mod h1:11STXKbvWzRGSNgajIsNydjvqu1vfeLDAQJbnPKphls=
+github.com/kgysu/oc-wrapper v0.1.4-0.20200428115340-cb2e5fbed6ac h1:lX5Vd2hDRUugIQTUsgnk0iqbxQYszs7Jmbzwa2kRJrI=
+github.com/kgysu/oc-wrapper v0.1.4-0.20200428115340-cb2e5fbed6ac/go.mod h1:11STXKbvWzRGSNgajIsNydjvqu1vfeLDAQJbnPKphls=
+github.com/kgysu/oc-wrapper v0.1.4 h1:AGC8PjCJ1bsDfJpNNJi3pGS9AJd5u0Xok3IJVskoW54=
+github.com/kgysu/oc-wrapper v0.1.4/go.mod h1:11STXKbvWzRGSNgajIsNydjvqu1vfeLDAQJbnPKphls=
 github.com/kisielk/errcheck v1.2.0/go.mod h1:/BMXB+zMLi60iA8Vv6Ksmxu/1UDYcXs4uQLJ+jE2L00=
 github.com/kisielk/gotool v1.0.0/go.mod h1:XhKaO+MFFWcvkIS/tQcRk01m1F5IRFswLeQ+oQHNcck=
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=

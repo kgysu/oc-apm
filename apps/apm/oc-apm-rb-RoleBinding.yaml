@@ -6,7 +6,6 @@ metadata:
   labels:
     app: oc-apm
   name: oc-apm-rb
-  namespace: test-deployer
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role

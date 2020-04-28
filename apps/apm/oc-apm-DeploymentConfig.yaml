@@ -5,7 +5,6 @@ metadata:
     app: oc-apm
     type: operations
   name: oc-apm
-  namespace: test-deployer
 spec:
   replicas: 1
   revisionHistoryLimit: 10
@@ -23,7 +22,6 @@ spec:
     type: Rolling
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: oc-apm
         type: operations

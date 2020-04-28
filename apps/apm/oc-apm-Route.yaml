@@ -8,7 +8,6 @@ metadata:
     app: oc-apm
     type: operations
   name: oc-apm
-  namespace: test-deployer
 spec:
   port:
     targetPort: 8080
