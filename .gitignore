@@ -9,5 +9,5 @@
 *.iml
 
 vendor
-
+dist
 oc-apm

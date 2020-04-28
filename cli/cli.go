@@ -14,6 +14,9 @@ func RunCli(input []string) error {
 		if cmd == "start" {
 			return cmds.RunCliCmdStartServer(args)
 		}
+		if cmd == "version" {
+			return cmds.RunCliCmdVersion(args)
+		}
 		if cmd == "app" {
 			return cmdsApp.RunCliCmdApp(args)
 		}

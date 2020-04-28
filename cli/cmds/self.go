@@ -16,7 +16,7 @@ import (
 	"os"
 )
 
-const ImageTag = "registry.hub.docker.com/delai21/oc-apm:0.1.2"
+const ImageTag = "registry.hub.docker.com/delai21/oc-apm:" + config.AppVersion
 
 func RunCliCmdInstallSelf() error {
 	restConf, err := client.GetRestConfig(false)

@@ -10,7 +10,7 @@ import (
 func CreateHomePage() string {
 	return htmlTemplates.CreateHtml("Home", fmt.Sprint(
 		htmlTemplates.CreateBreaks(2),
-		fmt.Sprintf(homePage, config.HelpText),
+		fmt.Sprintf(homePage, config.GetVersion(), config.HelpText),
 		htmlTemplates.CreateBreaks(5),
 	))
 }
@@ -35,6 +35,7 @@ const homePage = `
 <h4>Info</h4>
 <br />
 <p>GitHub-Repository: <a class="" href="https://github.com/kgysu/oc-apm" target="_blank">github.com/kgysu/oc-apm</a></p>
+<p><b>Version:</b> %s</p>
 <br />
 <h5>Run APM local</h5>
 <p>If you want to run apm on your local machine then ensure to login with oc client first:</p>

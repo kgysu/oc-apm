@@ -87,3 +87,7 @@ func IsInDebugModeOrDefault() bool {
 func SetDebugMode(dm bool) {
 	debugMode = dm
 }
+
+func GetVersion() string {
+	return AppVersion
+}
