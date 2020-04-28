@@ -1,6 +1,6 @@
 package config
 
-const AppVersion = "0.1.3"
+const AppVersion = "0.1.4"
 
 const HelpText = `
 OC-APM is a helpful tool to manage applications on an Openshift-Cluster.
